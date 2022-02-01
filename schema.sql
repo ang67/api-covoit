@@ -19,8 +19,8 @@ CREATE TABLE Ratings (
     RatedID INT,
     RaterID INT,
     Comment TEXT(500),
-    RatingScore DECIMAL(1,1),
-    DateRated DATETIME,
+    RatingScore DECIMAL(2,1),
+    DateRated DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (RatedID) REFERENCES Users(UserID),
     FOREIGN KEY (RaterID) REFERENCES Users(UserID)
@@ -54,7 +54,7 @@ CREATE TABLE Orders (
     OrderID INT AUTO_INCREMENT  PRIMARY KEY,
     UserID INT NOT NULL,
     TripID INT NOT NULL,
-    DateOrder DATETIME NOT NULL,
+    DateOrder DATETIME DEFAULT CURRENT_TIMESTAMP,
     RequestedPlace INT NOT NULL,
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (TripID) REFERENCES Trips(TripID)
@@ -63,7 +63,7 @@ CREATE TABLE Orders (
 CREATE TABLE Alerts (
     AlertID INT AUTO_INCREMENT  PRIMARY KEY,
     UserID INT NOT NULL,
-    DateAlert DATETIME NOT NULL,
+    DateAlert DATETIME DEFAULT CURRENT_TIMESTAMP,
     Departure VARCHAR(250) NOT NULL,
     DepartureAddress VARCHAR(250),
     DepartureTime DATETIME NOT NULL,
@@ -78,3 +78,5 @@ INSERT INTO Users (Firstname, Lastname, Mail, Password) VALUES ('Bini', 'Angui',
 INSERT INTO Users (Firstname, Lastname, Mail, Password) VALUES ('Eli', 'Muler', 'eli@gmail.com', 'azerty')
 INSERT INTO Users (Firstname, Lastname, Mail, Password) VALUES ('Ben', 'Agar', 'ben@gmail.com', 'azerty')
 INSERT INTO Users (Firstname, Lastname, Mail, Password) VALUES ('Jean', 'Greot', 'jean@gmail.com', 'azerty')
+
+INSERT INTO `ratings`(`RatedID`, `RaterID`, `Comment`, `RatingScore`, `DateRated`) VALUES (1, 2,"Good driver", 4.5)
