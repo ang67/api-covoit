@@ -5,6 +5,8 @@ class User(db.Model):
     __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    public_id = db.Column(db.String(100), unique=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
     firstname = db.Column(db.String(255), nullable=False)
     lastname = db.Column(db.String(255), nullable=False)
     date_of_birth = db.Column(db.DateTime, nullable=False)
@@ -12,7 +14,6 @@ class User(db.Model):
     photo_ref = db.Column(db.String(255))
     docs_ref = db.Column(db.String(255))
     id_checked = db.Column(db.Boolean, nullable=False, default=False)
-    email = db.Column(db.String(255), unique=True, nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
     password_hash = db.Column(db.String(100))
 
