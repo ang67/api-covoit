@@ -9,15 +9,10 @@ def save_new_user(data):
     user = User.query.filter_by(email=data['email']).first()
     if not user:
         new_user = User(
-            public_id=data['public_id'],
+            public_id=str(uuid.uuid4()),
             email=data['email'],
             firstname=data['firstname'],
             lastname=data['lastname'],
-            date_of_birth=data['date_of_birth'],
-            bio=data['bio'],
-            photo_ref=data['photo_ref'],
-            docs_ref=data['docs_ref'],
-            id_checked=data['id_checked'],
             registered_on=datetime.datetime.utcnow(),
             password=data['password']
         )
@@ -39,7 +34,7 @@ def get_all_users():
     return User.query.all()
 
 
-def get_a_user(id):
+def get_a_user(public_id):
     return User.query.filter_by(public_id=public_id).first()
 
 
